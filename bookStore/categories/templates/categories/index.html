@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block body %}
+    <div class="container text-center">
+        <h1>Categories</h1>
+        <a class="btn btn-success mb-3" href="{% url 'createCategory' %}">Create Category</a>
+
+        <table class="table">
+            <tr>
+                <td>ID</td><td>name</td><td>description</td><td>edit</td><td>delete</td>
+            </tr>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.description }}</td>
+                    <td><a class="btn btn-primary" href="category/edit/{{ category.id }}">Edit</a></td>
+                    <td><a class="btn btn-danger" href="category/delete/{{ category.id }}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

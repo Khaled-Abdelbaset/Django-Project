@@ -1,0 +1,43 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block body %}
+        <div class="container">
+            <div style="text-align: right;">
+                <a href="createform" class="btn btn-success mb-1 px-3 fw-bold">+</a>
+            </div>
+            <div class="row text-center gx-0">
+                {% for book in books %}
+                    <div class="col-4">
+                        <div class="card  align-items-center" >
+                          <img src="{{ book.image_url }}" class="gx-0" style="height: 300px" alt="book image">
+                          <div class="card-body">
+                            <h5 class="card-title">Title: {{book.title}}</h5>
+                            <p class="card-text">Pages: {{book.no_pages}}</p>
+                            <p class="card-text">Price: {{book.price}}</p>
+                            <p class="card-text">Author: {{book.author}}</p>
+                            <a href="{{book.id}}" class="btn btn-primary">View</a>
+                            <a href="update/{{book.id}}" class="btn btn-info">Edit</a>
+                            <a href="delete/{{book.id}}" class="btn btn-danger delete-book" data-book-id="{{ book.id }}">Delete</a>
+                          </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let deleteButtons = document.querySelectorAll(".delete-book");
+        deleteButtons.forEach(function (button) {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+                let bookId = this.getAttribute("data-book-id");
+                if (confirm("Are you sure you want to delete this book?")) {
+                    window.location.href = "delete/" + bookId;
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}

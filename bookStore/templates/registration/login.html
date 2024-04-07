@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block body %}
+    <div class="container">
+        <h2>Login</h2>
+        <form method="POST" enctype="multipart/form-data" class="text-center">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" class="btn btn-primary w-25 d-inline-block mt-2">
+        </form>
+    </div>
+    <script src="{% static 'books/js/script.js' %}"></script>
+{% endblock %}
+

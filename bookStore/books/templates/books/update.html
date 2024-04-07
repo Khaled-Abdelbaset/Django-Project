@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+    <h2>Edit Book Details</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{bookdata.id}}" class="form-control" >
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" name="title" value="{{bookdata.title}}" class="form-control" >
+      </div>
+        <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input type="number" name='price' value="{{bookdata.price}}" class="form-control" >
+      </div>
+        <div class="mb-3">
+        <label class="form-label">Pages</label>
+        <input type="number" name='no_pages' value="{{bookdata.no_pages}}" class="form-control" >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">author</label>
+        <input type="text" name='author' value="{{bookdata.author}}" class="form-control" >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Image</label>
+        <input type="file" name='image' class="form-control" >
+      </div>
+      <div class="text-center mb-2">
+      <button type="submit" class="btn btn-primary">Submit Editing</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
